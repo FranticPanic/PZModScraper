@@ -1,7 +1,0 @@
-# make sure to get a Steam WebAPI key from
-# https://steamcommunity.com/dev/apikey
-# using localhost is sufficent as an ip
-default:
-  apikey: "8664B5A04A6DEDA014B33FB6FB8BB98D" # change me! (required)
-  collections: ["2934162828"] # change me! (required)
-  exclusions: [""] # change me! (optional)

@@ -10,6 +10,8 @@ import io
 import yaml
 from requests import exceptions
 from steam.webapi import WebAPI
+import sys
+print(sys.argv)
 
 class splitargs(argparse.Action):
     def __call__(self, parser, namespace, values: str, option_string=None):
@@ -123,7 +125,7 @@ parser.add_argument('-e', '--exclude', metavar='abc,def,ghi',\
     type=str, nargs="?", default="", action=splitargs,\
     help="List of Mod IDs to be excluded from output.")
 parser.add_argument('--configpath', metavar='/path/to/config',\
-    type=str, nargs="?", default=defaultfilepath, action=splitargs,\
+    type=str, nargs="?", default=defaultfilepath,\
     help="Path to and name of config file. Defaults to \"config.yaml\" in local dir.")
 parser.add_argument('config', metavar='default',\
     type=str, nargs="?", default="none",\
@@ -280,7 +282,7 @@ spacerneeded = False
 for wsid,description in joinedinfo:
     ## mod ids in description
     ids = re.findall\
-        ("(?:Mod(?:\s?)ID)(?:\:)(?:[\s+])([\w._&-]+)", description)
+        (r"(?:Mod(?:\s?)ID)(?:\:)(?:[\s+])([\w._&-]+)", description)
     update_collection(wscollection, wsid, ids)
     for id in ids:
         for exclude in excluded:
